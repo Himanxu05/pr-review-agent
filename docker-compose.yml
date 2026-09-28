@@ -1,0 +1,11 @@
+services:
+  reviewer:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      GITHUB_PRIVATE_KEY_PATH: /run/secrets/github-app.pem
+    volumes:
+      - ./github-app.pem:/run/secrets/github-app.pem:ro
+    restart: unless-stopped
